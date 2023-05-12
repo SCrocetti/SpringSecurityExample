@@ -1,30 +1,27 @@
 package com.example.spring_security_demo.persistance.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "modules")
+public class Module {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="role_id")
-    private Integer roleId;
-    @Column(name="role_name")
-    private String roleName;
+    @Column(name="module_id")
+    private Integer moduleId;
 
+    @Column(name="module_name")
+    private String moduleName;
     @CreatedDate
     @Column(name="creation_date_time")
     private LocalDateTime creationDateTime;
@@ -37,9 +34,7 @@ public class Role {
     private Integer modificationUser;
     private boolean enabled = true;
 
-    @OneToMany(mappedBy = "role")
-    private Set<UserRole> userRoles= new HashSet<>();
+    @OneToMany(mappedBy = "module")
+    private List<Permission> permissions;
 
-    @OneToMany(mappedBy = "role")
-    private List<RolePermission> permissions;
 }

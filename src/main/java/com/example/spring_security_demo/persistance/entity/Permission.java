@@ -1,8 +1,7 @@
 package com.example.spring_security_demo.persistance.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -12,18 +11,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Entity
-@Table(name = "roles")
-public class Role {
+@Table(name = "permissions")
+public class Permission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="permission_id")
+    private Integer permissionId;
     @Column(name="role_id")
     private Integer roleId;
-    @Column(name="role_name")
-    private String roleName;
+    @Column(name="module_id")
+    private Integer moduleId;
+    @Column(name="action_id")
+    private Integer actionId;
+    @Column(name="permission_name")
+    private String permissionName;
 
     @CreatedDate
     @Column(name="creation_date_time")
@@ -37,9 +41,15 @@ public class Role {
     private Integer modificationUser;
     private boolean enabled = true;
 
-    @OneToMany(mappedBy = "role")
-    private Set<UserRole> userRoles= new HashSet<>();
+    @OneToMany(mappedBy = "permission")
+    private List<RolePermission> roles;
 
-    @OneToMany(mappedBy = "role")
-    private List<RolePermission> permissions;
+    @ManyToOne
+    @JoinColumn(name = "module_id",insertable = false,updatable = false)
+    private Module module;
+
+    @ManyToOne
+    @JoinColumn(name = "action_id",insertable = false,updatable = false)
+    private Action action;
+
 }

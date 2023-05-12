@@ -41,7 +41,7 @@ public class UserRole implements GrantedAuthority {
 
     @Override
     public  String getAuthority(){
-        return this.role.getAuthority();
+        return this.role.getRoleName();
     }
 
 }

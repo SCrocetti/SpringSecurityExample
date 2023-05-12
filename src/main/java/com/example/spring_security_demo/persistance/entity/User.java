@@ -33,7 +33,7 @@ public class User implements UserDetails {
     private String lastName;
 
     private String email;
-    @OneToMany(mappedBy = "user",cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "user")
     private Set<UserRole> authorities = new HashSet<>();
 
     @CreatedDate
