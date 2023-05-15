@@ -53,14 +53,14 @@ public class Permission {
     public void setActionId(String actionName) {
         this.actionName = actionName;
         switch (actionName){
-            case "GET":
-                action=Action.GET;
+            case "READ":
+                action=Action.READ;
                 break;
-            case "POST":
-                action=Action.POST;
+            case "WRITE":
+                action=Action.WRITE;
                 break;
-            case "PUT":
-                action=Action.PUT;
+            case "OVERWRITE":
+                action=Action.OVERWRITE;
                 break;
             case "DELETE":
                 action=Action.DELETE;

@@ -6,13 +6,13 @@ package com.example.spring_security_demo.persistance.entity;
 public enum Action {
     // query data
     // requerir datos
-    GET,
+    READ,
     // insert data
     // insertar datos
-    POST,
+    WRITE,
     // modiffy data
     // modificar datos
-    PUT,
+    OVERWRITE,
     // delete data
     // borrar datos
     DELETE,
