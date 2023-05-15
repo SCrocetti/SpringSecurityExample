@@ -20,8 +20,6 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="permission_id")
     private Integer permissionId;
-    @Column(name="role_id")
-    private Integer roleId;
     @Column(name="module_id")
     private Integer moduleId;
     @Column(name="action_name")

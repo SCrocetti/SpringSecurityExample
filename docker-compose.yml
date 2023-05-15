@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  postgres:
+    container_name: postgres15
+    build:
+      context: ./DB
+      dockerfile: Dockerfile
+    networks:
+      - postgres_net
+    volumes:
+      - C:/docker_postgres_data:/var/lib/postgresql/data
+    
+    restart: always
+  springapp:
+    container_name: spring_security_demo
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8090/tcp"
+    networks:
+      - postgres_net
+    restart: always
+  
+
+networks:
+  postgres_net:
+    name: postgres_network
+    driver: bridge
+

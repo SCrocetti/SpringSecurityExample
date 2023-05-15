@@ -5,11 +5,25 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import java.io.Serializable;
-@Getter
-@Setter
 public class UserRolePk implements Serializable {
     @Column(name="role_id")
     private Integer roleId;
     @Column(name="user_id")
     private Integer userId;
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 }

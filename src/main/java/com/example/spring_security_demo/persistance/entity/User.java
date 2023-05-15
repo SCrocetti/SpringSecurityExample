@@ -5,15 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
-@Getter
-@Setter
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -58,6 +57,21 @@ public class User implements UserDetails {
     }
 
     @Override
+    public Set<UserRole> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
     public boolean isAccountNonExpired() {
         return enabled;
     }
@@ -69,6 +83,90 @@ public class User implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
+        return enabled;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAuthorities(Set<UserRole> authorities) {
+        this.authorities = authorities;
+    }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public Integer getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(Integer creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public LocalDateTime getModificationDateTime() {
+        return modificationDateTime;
+    }
+
+    public void setModificationDateTime(LocalDateTime modificationDateTime) {
+        this.modificationDateTime = modificationDateTime;
+    }
+
+    public Integer getModificationUser() {
+        return modificationUser;
+    }
+
+    public void setModificationUser(Integer modificationUser) {
+        this.modificationUser = modificationUser;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
         return enabled;
     }
 }

@@ -1,8 +1,6 @@
 package com.example.spring_security_demo.persistance.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -11,10 +9,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -42,4 +36,76 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private List<RolePermission> permissions;
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+
+    public LocalDateTime getCreationDateTime() {
+        return creationDateTime;
+    }
+
+    public void setCreationDateTime(LocalDateTime creationDateTime) {
+        this.creationDateTime = creationDateTime;
+    }
+
+    public Integer getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(Integer creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public LocalDateTime getModificationDateTime() {
+        return modificationDateTime;
+    }
+
+    public void setModificationDateTime(LocalDateTime modificationDateTime) {
+        this.modificationDateTime = modificationDateTime;
+    }
+
+    public Integer getModificationUser() {
+        return modificationUser;
+    }
+
+    public void setModificationUser(Integer modificationUser) {
+        this.modificationUser = modificationUser;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
+    public List<RolePermission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<RolePermission> permissions) {
+        this.permissions = permissions;
+    }
 }
