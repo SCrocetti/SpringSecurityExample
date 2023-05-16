@@ -16,24 +16,28 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
-CREATE TABLE IF NOT EXISTS public.roles (
-    role_id INTEGER PRIMARY KEY,
-    role_name character varying(100) NOT NULL UNIQUE
-);
-ALTER TABLE public.roles OWNER TO postgres;
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 
-CREATE SEQUENCE IF NOT EXISTS public.role_id_roles_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.role_id_roles_seq OWNER TO postgres;
-
-
-ALTER SEQUENCE public.role_id_roles_seq OWNED BY public.roles.roles_id;
-
+INSERT INTO users
+(
+	user_name,
+	PASSWORD,
+	first_name,
+	last_name,
+	email,
+	creation_date_time,
+	creation_user,
+	enabled
+)
+VALUES
+(
+	'sysadmin',
+	crypt('sysadmin2020', gen_salt('bf')),
+	'system',
+	'administrator',
+	'sysadmin@gmail.com',
+	now()::TIMESTAMP,
+	1,
+	TRUE
+)

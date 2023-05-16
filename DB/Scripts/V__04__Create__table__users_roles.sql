@@ -16,10 +16,6 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
---
--- TOC entry 210 (class 1259 OID 16396)
--- Name: categorias; Type: TABLE; Schema: public; Owner: postgres
---
 
 CREATE TABLE IF NOT EXISTS public.users_roles (
     user_id INTEGER NOT NULL,

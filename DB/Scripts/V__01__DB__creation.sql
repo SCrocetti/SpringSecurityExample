@@ -9,10 +9,7 @@ SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- TOC entry 3351 (class 1262 OID 16394)
--- Name: platzi-market; Type: DATABASE; Schema: -; Owner: postgres
---
+
 
 CREATE DATABASE IF NOT EXISTS "spring-security-demo" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Spanish_Paraguay.1252';
 
