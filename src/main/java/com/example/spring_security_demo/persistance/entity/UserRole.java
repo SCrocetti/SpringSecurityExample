@@ -38,7 +38,7 @@ public class UserRole implements GrantedAuthority {
 
     @Override
     public  String getAuthority(){
-        return this.role.getRoleName();
+        return this.role.getRoleNameEnum().toString();
     }
 
     public UserRolePk getId() {

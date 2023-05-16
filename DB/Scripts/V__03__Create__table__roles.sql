@@ -23,12 +23,7 @@ SET default_table_access_method = heap;
 
 CREATE TABLE IF NOT EXISTS public.roles (
     role_id INTEGER PRIMARY KEY,
-    role_name character varying(100) NOT NULL,
-	creation_date_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-	creation_user INTEGER NOT NULL,
-	modification_date_time TIMESTAMP WITHOUT TIME ZONE,
-	modification_user INTEGER,
-	enabled BOOLEAN NOT NULL DEFAULT TRUE
+    role_name character varying(100) NOT NULL UNIQUE
 );
 ALTER TABLE public.roles OWNER TO postgres;
 

@@ -19,23 +19,10 @@ public class Role {
     @Column(name="role_name")
     private String roleName;
 
-    @CreatedDate
-    @Column(name="creation_date_time")
-    private LocalDateTime creationDateTime;
-    @Column(name="creation_user")
-    private Integer creationUser;
-    @LastModifiedDate
-    @Column(name="modification_date_time")
-    private LocalDateTime modificationDateTime;
-    @Column(name="modification_user")
-    private Integer modificationUser;
-    private boolean enabled = true;
-
+    @Transient
+    private RoleName roleNameEnum;
     @OneToMany(mappedBy = "role")
-    private Set<UserRole> userRoles= new HashSet<>();
-
-    @OneToMany(mappedBy = "role")
-    private List<RolePermission> permissions;
+    private Set<UserRole> users= new HashSet<>();
 
     public Integer getRoleId() {
         return roleId;
@@ -50,62 +37,35 @@ public class Role {
     }
 
     public void setRoleName(String roleName) {
+        switch (roleName){
+            case "SYSTEM_ADMIN":
+                this.roleNameEnum=RoleName.SYSTEM_ADMIN;
+                break;
+            case "USER_ADMIN":
+                this.roleNameEnum=RoleName.USER_ADMIN;
+                break;
+            case "BOOK_ADMIN":
+                this.roleNameEnum=RoleName.BOOK_ADMIN;
+                break;
+            case "AUDITHOR":
+                this.roleNameEnum=RoleName.AUDITHOR;
+                break;
+            default:
+                this.roleNameEnum=RoleName.NONE;
+                break;
+        }
         this.roleName = roleName;
     }
 
-    public LocalDateTime getCreationDateTime() {
-        return creationDateTime;
+    public Set<UserRole> getUser() {
+        return users;
     }
 
-    public void setCreationDateTime(LocalDateTime creationDateTime) {
-        this.creationDateTime = creationDateTime;
+    public void setUser(Set<UserRole> user) {
+        this.users = user;
     }
 
-    public Integer getCreationUser() {
-        return creationUser;
-    }
-
-    public void setCreationUser(Integer creationUser) {
-        this.creationUser = creationUser;
-    }
-
-    public LocalDateTime getModificationDateTime() {
-        return modificationDateTime;
-    }
-
-    public void setModificationDateTime(LocalDateTime modificationDateTime) {
-        this.modificationDateTime = modificationDateTime;
-    }
-
-    public Integer getModificationUser() {
-        return modificationUser;
-    }
-
-    public void setModificationUser(Integer modificationUser) {
-        this.modificationUser = modificationUser;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
-
-    public List<RolePermission> getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(List<RolePermission> permissions) {
-        this.permissions = permissions;
+    public RoleName getRoleNameEnum() {
+        return roleNameEnum;
     }
 }
