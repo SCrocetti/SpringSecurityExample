@@ -40,4 +40,94 @@ VALUES
 	now()::TIMESTAMP,
 	1,
 	TRUE
+);
+INSERT INTO users
+(
+	user_name,
+	PASSWORD,
+	first_name,
+	last_name,
+	email,
+	creation_date_time,
+	creation_user,
+	enabled
 )
+VALUES
+(
+	'sofi',
+	crypt('sofi2020', gen_salt('bf')),
+	'Sofia',
+	'Crocetti',
+	'sofia.17.crocetti@gmail.com',
+	now()::TIMESTAMP,
+	1,
+	TRUE
+);
+INSERT INTO users
+(
+	user_name,
+	PASSWORD,
+	first_name,
+	last_name,
+	email,
+	creation_date_time,
+	creation_user,
+	enabled
+)
+VALUES
+(
+	'juan',
+	crypt('juan2020', gen_salt('bf')),
+	'Juan',
+	'Gonzales',
+	'juan.gonzalez@gmail.com',
+	now()::TIMESTAMP,
+	1,
+	TRUE
+);
+
+INSERT INTO users
+(
+	user_name,
+	PASSWORD,
+	first_name,
+	last_name,
+	email,
+	creation_date_time,
+	creation_user,
+	enabled
+)
+VALUES
+(
+	'emily',
+	crypt('emily2020', gen_salt('bf')),
+	'Emily',
+	'Echagues',
+	'emily.Echagues@gmail.com',
+	now()::TIMESTAMP,
+	1,
+	TRUE
+);
+
+INSERT INTO users
+(
+	user_name,
+	PASSWORD,
+	first_name,
+	last_name,
+	email,
+	creation_date_time,
+	creation_user,
+	enabled
+)
+VALUES
+(
+	'yaqui',
+	crypt('yaqui2020', gen_salt('bf')),
+	'Yaqui',
+	'Velazquez',
+	'sieras.yaqui94@gmail.com',
+	now()::TIMESTAMP,
+	1,
+	TRUE
+);
