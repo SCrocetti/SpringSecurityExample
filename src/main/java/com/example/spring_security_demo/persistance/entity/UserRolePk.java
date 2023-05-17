@@ -1,8 +1,5 @@
 package com.example.spring_security_demo.persistance.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.Column;
 import java.io.Serializable;
 public class UserRolePk implements Serializable {

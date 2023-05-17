@@ -6,6 +6,8 @@ services:
     build:
       context: ./DB
       dockerfile: Dockerfile
+    ports:
+      - "6000:8888/tcp"
     networks:
       - postgres_net
     volumes:

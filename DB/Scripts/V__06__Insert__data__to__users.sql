@@ -16,11 +16,11 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto;
+CREATE EXTENSION IF NOT EXISTS pgcrypto SCHEMA public;
 
 
 
-INSERT INTO users
+INSERT INTO public.users
 (
 	user_name,
 	PASSWORD,
@@ -34,7 +34,7 @@ INSERT INTO users
 VALUES
 (
 	'sysadmin',
-	crypt('sysadmin2020', gen_salt('bf')),
+	public.crypt('sysadmin2020', public.gen_salt('bf')),
 	'system',
 	'administrator',
 	'sysadmin@gmail.com',
@@ -42,7 +42,7 @@ VALUES
 	1,
 	TRUE
 );
-INSERT INTO users
+INSERT INTO public.users
 (
 	user_name,
 	PASSWORD,
@@ -56,7 +56,7 @@ INSERT INTO users
 VALUES
 (
 	'sofi',
-	crypt('sofi2020', gen_salt('bf')),
+	public.crypt('sofi2020', public.gen_salt('bf')),
 	'Sofia',
 	'Crocetti',
 	'sofia.17.crocetti@gmail.com',
@@ -64,7 +64,7 @@ VALUES
 	1,
 	TRUE
 );
-INSERT INTO users
+INSERT INTO public.users
 (
 	user_name,
 	PASSWORD,
@@ -78,7 +78,7 @@ INSERT INTO users
 VALUES
 (
 	'juan',
-	crypt('juan2020', gen_salt('bf')),
+	public.crypt('juan2020', public.gen_salt('bf')),
 	'Juan',
 	'Gonzales',
 	'juan.gonzalez@gmail.com',
@@ -87,7 +87,7 @@ VALUES
 	TRUE
 );
 
-INSERT INTO users
+INSERT INTO public.users
 (
 	user_name,
 	PASSWORD,
@@ -101,7 +101,7 @@ INSERT INTO users
 VALUES
 (
 	'emily',
-	crypt('emily2020', gen_salt('bf')),
+	public.crypt('emily2020', public.gen_salt('bf')),
 	'Emily',
 	'Echagues',
 	'emily.Echagues@gmail.com',
@@ -110,7 +110,7 @@ VALUES
 	TRUE
 );
 
-INSERT INTO users
+INSERT INTO public.users
 (
 	user_name,
 	PASSWORD,
@@ -124,7 +124,7 @@ INSERT INTO users
 VALUES
 (
 	'yaqui',
-	crypt('yaqui2020', gen_salt('bf')),
+	public.crypt('yaqui2020', public.gen_salt('bf')),
 	'Yaqui',
 	'Velazquez',
 	'sieras.yaqui94@gmail.com',

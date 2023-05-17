@@ -40,6 +40,7 @@ CREATE SEQUENCE IF NOT EXISTS public.book_id_books_seq
 
 ALTER TABLE public.book_id_books_seq OWNER TO postgres;
 
+ALTER TABLE public.books ALTER COLUMN book_id SET DEFAULT nextval('public.book_id_books_seq');
 
 ALTER SEQUENCE public.book_id_books_seq OWNED BY public.books.book_id;
 

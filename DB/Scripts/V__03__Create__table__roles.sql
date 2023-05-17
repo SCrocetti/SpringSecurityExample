@@ -34,6 +34,7 @@ CREATE SEQUENCE IF NOT EXISTS public.role_id_roles_seq
 
 ALTER TABLE public.role_id_roles_seq OWNER TO postgres;
 
+ALTER TABLE public.roles ALTER COLUMN role_id SET DEFAULT nextval('public.role_id_roles_seq');
 
-ALTER SEQUENCE public.role_id_roles_seq OWNED BY public.roles.roles_id;
+ALTER SEQUENCE public.role_id_roles_seq OWNED BY public.roles.role_id;
 

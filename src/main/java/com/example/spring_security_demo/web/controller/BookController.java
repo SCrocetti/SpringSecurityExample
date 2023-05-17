@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("book")
+@RequestMapping("/books")
 public class BookController {
-    @GetMapping("user")
+    @GetMapping("/all")
     public String helloUser() {
         return "Hello User";
     }

@@ -16,7 +16,7 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
-INSERT INTO roles
+INSERT INTO public.roles
 (
 	role_name
 )
@@ -24,7 +24,7 @@ VALUES
 (
 	'SYSTEM_ADMIN'
 );
-INSERT INTO roles
+INSERT INTO public.roles
 (
 	role_name
 )
@@ -32,7 +32,7 @@ VALUES
 (
 	'USER_ADMIN'
 );
-INSERT INTO roles
+INSERT INTO public.roles
 (
 	role_name
 )
@@ -40,7 +40,7 @@ VALUES
 (
 	'BOOK_ADMIN'
 );
-INSERT INTO roles
+INSERT INTO public.roles
 (
 	role_name
 )

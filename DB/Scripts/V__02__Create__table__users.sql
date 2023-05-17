@@ -44,6 +44,7 @@ CREATE SEQUENCE IF NOT EXISTS public.user_id_users_seq
 
 ALTER TABLE public.user_id_users_seq OWNER TO postgres;
 
+ALTER TABLE public.users ALTER COLUMN user_id SET DEFAULT nextval('public.user_id_users_seq');
 
 ALTER SEQUENCE public.user_id_users_seq OWNED BY public.users.user_id;
 

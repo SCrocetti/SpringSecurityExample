@@ -11,7 +11,7 @@ SET row_security = off;
 
 
 
-CREATE DATABASE IF NOT EXISTS "spring-security-demo" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Spanish_Paraguay.1252';
+CREATE DATABASE "spring-security-demo" WITH TEMPLATE = template0 ENCODING = 'UTF8' LOCALE = 'Spanish_Paraguay.1252';
 
 
 ALTER DATABASE "spring-security-demo" OWNER TO postgres;

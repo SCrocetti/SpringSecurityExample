@@ -16,7 +16,7 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
-INSERT INTO users_roles
+INSERT INTO public.users_roles
 (
 	user_id,
 	role_id,
@@ -33,7 +33,7 @@ VALUES
 	TRUE
 );
 
-INSERT INTO users_roles
+INSERT INTO public.users_roles
 (
 	user_id,
 	role_id,
@@ -50,7 +50,7 @@ VALUES
 	TRUE
 );
 
-INSERT INTO users_roles
+INSERT INTO public.users_roles
 (
 	user_id,
 	role_id,
@@ -67,7 +67,7 @@ VALUES
 	TRUE
 );
 
-INSERT INTO users_roles
+INSERT INTO public.users_roles
 (
 	user_id,
 	role_id,
@@ -84,7 +84,7 @@ VALUES
 	TRUE
 );
 
-INSERT INTO users_roles
+INSERT INTO public.users_roles
 (
 	user_id,
 	role_id,
@@ -100,7 +100,7 @@ VALUES
 	2,
 	TRUE
 );
-INSERT INTO users_roles
+INSERT INTO public.users_roles
 (
 	user_id,
 	role_id,

@@ -16,7 +16,7 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
-INSERT INTO roles
+INSERT INTO public.books
 (
 	book_name,
 	creation_date_time,
@@ -25,13 +25,13 @@ INSERT INTO roles
 )
 VALUES
 (
-	'Mil y una noches'
+	'Mil y una noches',
 	now()::TIMESTAMP,
 	3,
 	TRUE
 );
 
-INSERT INTO roles
+INSERT INTO public.books
 (
 	book_name,
 	creation_date_time,
@@ -40,12 +40,12 @@ INSERT INTO roles
 )
 VALUES
 (
-	'La llamada de cthulu'
+	'La llamada de cthulu',
 	now()::TIMESTAMP,
 	3,
 	TRUE
 );
-INSERT INTO roles
+INSERT INTO public.books
 (
 	book_name,
 	creation_date_time,
@@ -54,7 +54,7 @@ INSERT INTO roles
 )
 VALUES
 (
-	'Fundacion'
+	'Fundacion',
 	now()::TIMESTAMP,
 	3,
 	TRUE
