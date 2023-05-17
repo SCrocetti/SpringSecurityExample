@@ -1,8 +1,5 @@
 package com.example.spring_security_demo.persistance.entity;
 
-
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.security.core.GrantedAuthority;

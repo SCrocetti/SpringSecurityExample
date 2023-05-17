@@ -19,6 +19,7 @@ SET default_table_access_method = heap;
 CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 
+
 INSERT INTO users
 (
 	user_name,
@@ -82,7 +83,7 @@ VALUES
 	'Gonzales',
 	'juan.gonzalez@gmail.com',
 	now()::TIMESTAMP,
-	1,
+	2,
 	TRUE
 );
 
@@ -105,7 +106,7 @@ VALUES
 	'Echagues',
 	'emily.Echagues@gmail.com',
 	now()::TIMESTAMP,
-	1,
+	2,
 	TRUE
 );
 
@@ -128,6 +129,6 @@ VALUES
 	'Velazquez',
 	'sieras.yaqui94@gmail.com',
 	now()::TIMESTAMP,
-	1,
+	2,
 	TRUE
 );
