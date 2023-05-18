@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS public.books (
     book_id INTEGER PRIMARY KEY,
     book_name character varying(100) UNIQUE NOT NULL,
 	creation_date_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-	creation_user INTEGER NOT NULL,
+	creation_user_id INTEGER NOT NULL,
 	modification_date_time TIMESTAMP WITHOUT TIME ZONE,
-	modification_user INTEGER,
+	modification_user_id INTEGER,
 	enabled BOOLEAN NOT NULL  DEFAULT TRUE
 );
 ALTER TABLE public.books OWNER TO postgres;
@@ -44,10 +44,10 @@ ALTER TABLE public.books ALTER COLUMN book_id SET DEFAULT nextval('public.book_i
 
 ALTER SEQUENCE public.book_id_books_seq OWNED BY public.books.book_id;
 
-ALTER TABLE public.books ADD CONSTRAINT fk_books_creation_user
-    FOREIGN KEY (creation_user)
+ALTER TABLE public.books ADD CONSTRAINT fk_books_creation_user_id
+    FOREIGN KEY (creation_user_id)
     REFERENCES public.users (user_id);
 	
-ALTER TABLE public.books ADD CONSTRAINT fk_books_modification_user
-    FOREIGN KEY (modification_user)
+ALTER TABLE public.books ADD CONSTRAINT fk_books_modification_user_id
+    FOREIGN KEY (modification_user_id)
     REFERENCES public.users (user_id);

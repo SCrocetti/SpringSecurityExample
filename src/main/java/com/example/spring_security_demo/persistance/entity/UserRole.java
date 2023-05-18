@@ -6,6 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users_roles")
@@ -16,14 +18,22 @@ public class UserRole implements GrantedAuthority {
     @CreatedDate
     @Column(name="creation_date_time")
     private LocalDateTime creationDateTime;
-    @Column(name="creation_user")
-    private Integer creationUser;
+    @Column(name="creation_user_id")
+    private Integer creationUserId;
     @LastModifiedDate
     @Column(name="modification_date_time")
     private LocalDateTime modificationDateTime;
-    @Column(name="modification_user")
-    private Integer modificationUser;
+    @Column(name="modification_user_id")
+    private Integer modificationUserId;
     private boolean enabled = true;
+
+    @ManyToOne
+    @JoinColumn(name = "creation_user_id",insertable = false,updatable = false)
+    private User creationUser;
+
+    @ManyToOne
+    @JoinColumn(name = "modification_user_id",insertable = false,updatable = false)
+    private User modificationUser;
 
     @ManyToOne
     @JoinColumn(name = "user_id",insertable = false,updatable = false)
@@ -54,12 +64,12 @@ public class UserRole implements GrantedAuthority {
         this.creationDateTime = creationDateTime;
     }
 
-    public Integer getCreationUser() {
-        return creationUser;
+    public Integer getCreationUserId() {
+        return creationUserId;
     }
 
-    public void setCreationUser(Integer creationUser) {
-        this.creationUser = creationUser;
+    public void setCreationUserId(Integer creationUserId) {
+        this.creationUserId = creationUserId;
     }
 
     public LocalDateTime getModificationDateTime() {
@@ -70,12 +80,12 @@ public class UserRole implements GrantedAuthority {
         this.modificationDateTime = modificationDateTime;
     }
 
-    public Integer getModificationUser() {
-        return modificationUser;
+    public Integer getModificationUserId() {
+        return modificationUserId;
     }
 
-    public void setModificationUser(Integer modificationUser) {
-        this.modificationUser = modificationUser;
+    public void setModificationUserId(Integer modificationUserId) {
+        this.modificationUserId = modificationUserId;
     }
 
     public boolean isEnabled() {
@@ -100,5 +110,21 @@ public class UserRole implements GrantedAuthority {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public User getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(User creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public User getModificationUser() {
+        return modificationUser;
+    }
+
+    public void setModificationUser(User modificationUser) {
+        this.modificationUser = modificationUser;
     }
 }

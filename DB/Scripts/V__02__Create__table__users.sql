@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS public.users (
 	last_name character varying(200),
 	email character varying(200) NOT NULL,
 	creation_date_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-	creation_user INTEGER NOT NULL,
+	creation_user_id INTEGER,
 	modification_date_time TIMESTAMP WITHOUT TIME ZONE,
-	modification_user INTEGER,
+	modification_user_id INTEGER,
 	enabled BOOLEAN NOT NULL  DEFAULT TRUE
 );
 ALTER TABLE public.users OWNER TO postgres;
@@ -47,4 +47,13 @@ ALTER TABLE public.user_id_users_seq OWNER TO postgres;
 ALTER TABLE public.users ALTER COLUMN user_id SET DEFAULT nextval('public.user_id_users_seq');
 
 ALTER SEQUENCE public.user_id_users_seq OWNED BY public.users.user_id;
+
+
+ALTER TABLE public.users ADD CONSTRAINT fk_users_creation_user_id
+    FOREIGN KEY (creation_user_id)
+    REFERENCES public.users (user_id);
+	
+ALTER TABLE public.users ADD CONSTRAINT fk_users_modification_user_id
+    FOREIGN KEY (modification_user_id)
+    REFERENCES public.users (user_id);
 

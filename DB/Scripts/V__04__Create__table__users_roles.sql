@@ -21,10 +21,10 @@ CREATE TABLE IF NOT EXISTS public.users_roles (
     user_id INTEGER NOT NULL,
     role_id INTEGER NOT NULL,
 	creation_date_time TIMESTAMP WITHOUT TIME ZONE NOT NULL,
-	creation_user INTEGER NOT NULL,
+	creation_user_id INTEGER NOT NULL,
 	modification_date_time TIMESTAMP WITHOUT TIME ZONE,
-	modification_user INTEGER,
-	enabled BOOLEAN NOT NULL DEFAULT TRUE,
+	modification_user_id INTEGER,
+	enabled BOOLEAN NOT NULL  DEFAULT TRUE,
 	PRIMARY KEY (user_id, role_id)
 );
 ALTER TABLE public.users_roles OWNER TO postgres;
@@ -37,10 +37,10 @@ ALTER TABLE public.users_roles ADD CONSTRAINT fk_users_roles_role_id
     FOREIGN KEY (role_id)
     REFERENCES public.roles (role_id);
 	
-ALTER TABLE public.users_roles ADD CONSTRAINT fk_users_roles_creation_user
-    FOREIGN KEY (creation_user)
+ALTER TABLE public.users_roles ADD CONSTRAINT fk_users_roles_creation_user_id
+    FOREIGN KEY (creation_user_id)
     REFERENCES public.users (user_id);
 	
-ALTER TABLE public.users_roles ADD CONSTRAINT fk_users_roles_modification_user
-    FOREIGN KEY (modification_user)
+ALTER TABLE public.users_roles ADD CONSTRAINT fk_users_roles_modification_user_id
+    FOREIGN KEY (modification_user_id)
     REFERENCES public.users (user_id);

@@ -2,13 +2,13 @@ package com.example.spring_security_demo.persistance.entity;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 @Entity
 @Table(name = "users")
@@ -35,16 +35,26 @@ public class User implements UserDetails {
     @CreatedDate
     @Column(name="creation_date_time")
     private LocalDateTime creationDateTime;
-    @Column(name="creation_user")
-    private Integer creationUser;
+    @Column(name="creation_user_id")
+    private Integer creationUserId;
     @LastModifiedDate
     @Column(name="modification_date_time")
     private LocalDateTime modificationDateTime;
-    @Column(name="modification_user")
-    private Integer modificationUser;
+    @Column(name="modification_user_id")
+    private Integer modificationUserId;
     private boolean enabled = true;
 
+    @ManyToOne
+    @JoinColumn(name = "creation_user_id",insertable = false,updatable = false)
+    private User creationUser;
+    @OneToMany(mappedBy = "creationUser",fetch = FetchType.EAGER)
+    private List<User> createdUsers =new ArrayList<User>();
 
+    @ManyToOne
+    @JoinColumn(name = "modification_user_id",insertable = false,updatable = false)
+    private User modificationUser;
+    @OneToMany(mappedBy = "modificationUser",fetch = FetchType.EAGER)
+    private List<User> modifiedUsers= new ArrayList<User>();
     public User() {
     }
 
@@ -135,12 +145,12 @@ public class User implements UserDetails {
         this.creationDateTime = creationDateTime;
     }
 
-    public Integer getCreationUser() {
-        return creationUser;
+    public Integer getCreationUserId() {
+        return creationUserId;
     }
 
-    public void setCreationUser(Integer creationUser) {
-        this.creationUser = creationUser;
+    public void setCreationUserId(Integer creationUserId) {
+        this.creationUserId = creationUserId;
     }
 
     public LocalDateTime getModificationDateTime() {
@@ -151,12 +161,12 @@ public class User implements UserDetails {
         this.modificationDateTime = modificationDateTime;
     }
 
-    public Integer getModificationUser() {
-        return modificationUser;
+    public Integer getModificationUserId() {
+        return modificationUserId;
     }
 
-    public void setModificationUser(Integer modificationUser) {
-        this.modificationUser = modificationUser;
+    public void setModificationUserId(Integer modificationUserId) {
+        this.modificationUserId = modificationUserId;
     }
 
     public void setEnabled(boolean enabled) {
@@ -165,5 +175,37 @@ public class User implements UserDetails {
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public User getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(User creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public List<User> getCreatedUsers() {
+        return createdUsers;
+    }
+
+    public void setCreatedUsers(List<User> createdUsers) {
+        this.createdUsers = createdUsers;
+    }
+
+    public User getModificationUser() {
+        return modificationUser;
+    }
+
+    public void setModificationUser(User modificationUser) {
+        this.modificationUser = modificationUser;
+    }
+
+    public List<User> getModifiedUsers() {
+        return modifiedUsers;
+    }
+
+    public void setModifiedUsers(List<User> modifiedUsers) {
+        this.modifiedUsers = modifiedUsers;
     }
 }

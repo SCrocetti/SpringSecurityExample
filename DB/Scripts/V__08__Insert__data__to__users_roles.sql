@@ -21,7 +21,7 @@ INSERT INTO public.users_roles
 	user_id,
 	role_id,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -38,7 +38,7 @@ INSERT INTO public.users_roles
 	user_id,
 	role_id,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -55,7 +55,7 @@ INSERT INTO public.users_roles
 	user_id,
 	role_id,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -72,7 +72,7 @@ INSERT INTO public.users_roles
 	user_id,
 	role_id,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -89,7 +89,7 @@ INSERT INTO public.users_roles
 	user_id,
 	role_id,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -105,7 +105,7 @@ INSERT INTO public.users_roles
 	user_id,
 	role_id,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES

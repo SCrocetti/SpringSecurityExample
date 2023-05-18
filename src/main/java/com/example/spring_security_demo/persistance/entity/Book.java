@@ -5,6 +5,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "books")
@@ -17,17 +19,25 @@ public class Book {
     private String bookName;
 
 
+
     @CreatedDate
     @Column(name="creation_date_time")
     private LocalDateTime creationDateTime;
-    @Column(name="creation_user")
-    private Integer creationUser;
+    @Column(name="creation_user_id")
+    private Integer creationUserId;
     @LastModifiedDate
     @Column(name="modification_date_time")
     private LocalDateTime modificationDateTime;
-    @Column(name="modification_user")
-    private Integer modificationUser;
+    @Column(name="modification_user_id")
+    private Integer modificationUserId;
     private boolean enabled = true;
+
+    @ManyToOne
+    @JoinColumn(name = "creation_user_id",insertable = false,updatable = false)
+    private User creationUser;
+    @ManyToOne
+    @JoinColumn(name = "modification_user_id",insertable = false,updatable = false)
+    private User modificationUser;
 
     public Integer getBookId() {
         return bookId;
@@ -53,12 +63,12 @@ public class Book {
         this.creationDateTime = creationDateTime;
     }
 
-    public Integer getCreationUser() {
-        return creationUser;
+    public Integer getCreationUserId() {
+        return creationUserId;
     }
 
-    public void setCreationUser(Integer creationUser) {
-        this.creationUser = creationUser;
+    public void setCreationUserId(Integer creationUserId) {
+        this.creationUserId = creationUserId;
     }
 
     public LocalDateTime getModificationDateTime() {
@@ -69,12 +79,12 @@ public class Book {
         this.modificationDateTime = modificationDateTime;
     }
 
-    public Integer getModificationUser() {
-        return modificationUser;
+    public Integer getModificationUserId() {
+        return modificationUserId;
     }
 
-    public void setModificationUser(Integer modificationUser) {
-        this.modificationUser = modificationUser;
+    public void setModificationUserId(Integer modificationUserId) {
+        this.modificationUserId = modificationUserId;
     }
 
     public boolean isEnabled() {
@@ -83,5 +93,21 @@ public class Book {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public User getCreationUser() {
+        return creationUser;
+    }
+
+    public void setCreationUser(User creationUser) {
+        this.creationUser = creationUser;
+    }
+
+    public User getModificationUser() {
+        return modificationUser;
+    }
+
+    public void setModificationUser(User modificationUser) {
+        this.modificationUser = modificationUser;
     }
 }

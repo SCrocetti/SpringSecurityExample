@@ -28,7 +28,6 @@ INSERT INTO public.users
 	last_name,
 	email,
 	creation_date_time,
-	creation_user,
 	enabled
 )
 VALUES
@@ -39,7 +38,6 @@ VALUES
 	'administrator',
 	'sysadmin@gmail.com',
 	now()::TIMESTAMP,
-	1,
 	TRUE
 );
 INSERT INTO public.users
@@ -50,7 +48,7 @@ INSERT INTO public.users
 	last_name,
 	email,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -72,7 +70,7 @@ INSERT INTO public.users
 	last_name,
 	email,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -95,7 +93,7 @@ INSERT INTO public.users
 	last_name,
 	email,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -118,7 +116,7 @@ INSERT INTO public.users
 	last_name,
 	email,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES

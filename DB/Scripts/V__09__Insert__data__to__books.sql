@@ -20,7 +20,7 @@ INSERT INTO public.books
 (
 	book_name,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -35,7 +35,7 @@ INSERT INTO public.books
 (
 	book_name,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
@@ -49,7 +49,7 @@ INSERT INTO public.books
 (
 	book_name,
 	creation_date_time,
-	creation_user,
+	creation_user_id,
 	enabled
 )
 VALUES
