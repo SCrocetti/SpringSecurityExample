@@ -110,6 +110,7 @@ public class UserRole implements GrantedAuthority {
 
     public void setRole(Role role) {
         this.role = role;
+
     }
 
     public User getCreationUser() {
