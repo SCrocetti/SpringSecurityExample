@@ -1,13 +1,15 @@
 package com.example.spring_security_demo.domain.service;
 
-import com.example.spring_security_demo.domain.dto.CreateUserRequest;
+import com.example.spring_security_demo.domain.dto.*;
 import com.example.spring_security_demo.domain.dto.UpdateUserRequest;
 import com.example.spring_security_demo.persistance.crud.UserCrudRepository;
+import com.example.spring_security_demo.persistance.mapper.UserDtoMapper;
 import com.example.spring_security_demo.persistance.mapper.UserSaveMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +23,13 @@ public class DemoUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserSaveMapper saveMapper;
+
+    @Autowired
+    private UserDtoMapper dtoMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Transactional
-    public UserView create(CreateUserRequest request) {
+    public UserDto create(CreateUserRequest request) {
         if (userRepo.findByUsername(request.username()).isPresent()) {
             throw new ValidationException("Username exists!");
         }
@@ -35,19 +42,42 @@ public class DemoUserDetailsService implements UserDetailsService {
 
         user = userRepo.save(user);
 
-        return userViewMapper.toUserView(user);
+        return dtoMapper.toUserDto(user);
     }
 
     @Transactional
-    public UserView update(Integer id, UpdateUserRequest request) {
+    public UserDto updateInfo(Integer id, UpdateUserInfoRequest request) {
         var user = userRepo.getById(id);
-        saveMapper.update(request, user);
+        saveMapper.updateInfo(request, user);
 
         user = userRepo.save(user);
 
-        return userViewMapper.toUserView(user);
+        return dtoMapper.toUserDto(user);
     }
+    @Transactional
+    public UserDto updateAuthorities(Integer id, UpdateUserAuthoritiesRequest request) {
+        var user = userRepo.getById(id);
+        saveMapper.updateAuthorities(request, user);
 
+        user = userRepo.save(user);
+
+        return dtoMapper.toUserDto(user);
+    }
+    @Transactional
+    public UserDto updatePassword(Integer id, UpdateUserPasswordRequest request) {
+        var user = userRepo.getById(id);
+        if(!user.getPassword().equals(passwordEncoder.encode(request.oldPassword()))){
+            throw new ValidationException("Original password don't match");
+        }
+        if (!request.newPassword().equals(request.reNewPassword())) {
+            throw new ValidationException("Passwords don't match!");
+        }
+
+        user.setPassword(passwordEncoder.encode(request.newPassword()));
+        user = userRepo.save(user);
+
+        return dtoMapper.toUserDto(user);
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo

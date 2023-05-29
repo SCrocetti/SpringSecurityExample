@@ -31,12 +31,6 @@ public abstract  class UserSaveMapper {
     @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToUserRole")
     public abstract void updateAuthorities(UpdateUserAuthoritiesRequest request, @MappingTarget User user);
     @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
-    @Mappings({
-            @Mapping(source = "newPassword",target = "password")
-    })
-    public abstract void updatePassword(UpdateUserPasswordRequest request, @MappingTarget User user);
-
-    @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
     public abstract void updateInfo(UpdateUserInfoRequest request, @MappingTarget User user);
 
     @Named("stringToRole")
