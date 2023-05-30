@@ -24,6 +24,8 @@ public interface UserCrudRepository extends CrudRepository<User,Integer> {
 
     @Cacheable
     Optional<User> findById(Integer id);
+    @Cacheable
+    List<User> findAll();
 
     @Cacheable
     default User getById(Integer id) {

@@ -1,10 +1,12 @@
 package com.example.spring_security_demo.domain.service;
 
 import com.example.spring_security_demo.domain.dto.*;
-import com.example.spring_security_demo.domain.dto.UpdateUserRequest;
 import com.example.spring_security_demo.persistance.crud.UserCrudRepository;
+import com.example.spring_security_demo.persistance.entity.User;
+import com.example.spring_security_demo.persistance.exception.NotFoundException;
 import com.example.spring_security_demo.persistance.mapper.UserDtoMapper;
 import com.example.spring_security_demo.persistance.mapper.UserSaveMapper;
+import org.mapstruct.control.MappingControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +16,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.ValidationException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DemoUserDetailsService implements UserDetailsService {
@@ -77,6 +81,16 @@ public class DemoUserDetailsService implements UserDetailsService {
         user = userRepo.save(user);
 
         return dtoMapper.toUserDto(user);
+    }
+    public UserDto findById(Integer id){
+        return  userRepo.findById(id).map(user->{
+            return dtoMapper.toUserDto(user);
+        }).orElseThrow(
+                ()-> new NotFoundException(User.class,id)
+        );
+    }
+    public List<UserDto> findAll(){
+        return dtoMapper.toUserDto(userRepo.findAll());
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

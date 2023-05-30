@@ -13,9 +13,6 @@ public class Role {
     private Integer roleId;
     @Column(name="role_name")
     private String roleName;
-
-    @Transient
-    private RoleName roleNameEnum=RoleName.NONE;
     @OneToMany(mappedBy = "role")
     private Set<UserRole> users= new HashSet<>();
 
@@ -32,23 +29,6 @@ public class Role {
     }
 
     public void setRoleName(String roleName) {
-        switch (roleName){
-            case "SYSTEM_ADMIN":
-                this.roleNameEnum=RoleName.SYSTEM_ADMIN;
-                break;
-            case "USER_ADMIN":
-                this.roleNameEnum=RoleName.USER_ADMIN;
-                break;
-            case "BOOK_ADMIN":
-                this.roleNameEnum=RoleName.BOOK_ADMIN;
-                break;
-            case "AUDITHOR":
-                this.roleNameEnum=RoleName.AUDITHOR;
-                break;
-            default:
-                this.roleNameEnum=RoleName.NONE;
-                break;
-        }
         this.roleName = roleName;
     }
 
@@ -60,30 +40,9 @@ public class Role {
         this.users = user;
     }
 
-    public RoleName getRoleNameEnum() {
-        return roleNameEnum;
-    }
-
     public Role(Integer roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
-        switch (roleName){
-            case "SYSTEM_ADMIN":
-                this.roleNameEnum=RoleName.SYSTEM_ADMIN;
-                break;
-            case "USER_ADMIN":
-                this.roleNameEnum=RoleName.USER_ADMIN;
-                break;
-            case "BOOK_ADMIN":
-                this.roleNameEnum=RoleName.BOOK_ADMIN;
-                break;
-            case "AUDITHOR":
-                this.roleNameEnum=RoleName.AUDITHOR;
-                break;
-            default:
-                this.roleNameEnum=RoleName.NONE;
-                break;
-        }
     }
     public  Role(){
         this(0,"");

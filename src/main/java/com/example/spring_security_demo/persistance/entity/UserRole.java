@@ -6,8 +6,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users_roles")
@@ -45,7 +43,7 @@ public class UserRole implements GrantedAuthority {
 
     @Override
     public  String getAuthority(){
-        return this.role.getRoleNameEnum().toString();
+        return this.role.getRoleName();
     }
 
     public UserRolePk getId() {
