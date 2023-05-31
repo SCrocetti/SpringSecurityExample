@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface RoleCrudRepository extends CrudRepository<Role,Integer> {
     @Cacheable
-    Optional<Role> findByRolename(String roleName);
+    Optional<Role> findByRoleName(String roleName);
 }
