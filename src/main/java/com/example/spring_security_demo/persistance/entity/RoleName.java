@@ -5,6 +5,9 @@ package com.example.spring_security_demo.persistance.entity;
 // this should mirror the query SELECT nombre_role FROM roles
 // esto debe espejar the query  SELECT nombre_role FROM roles
 public final class RoleName {
+    // only for error catching
+    // solo para captura de errores
+    public final static  String NONE="NONE";
     // has all the access permissions
     // tiene todos los permisos de acceso
     public final static  String SYSTEM_ADMIN="SYSTEM_ADMIN";

@@ -27,23 +27,6 @@ INSERT INTO public.users_roles
 VALUES
 (
 	1,
-	1,
-	now()::TIMESTAMP,
-	2,
-	TRUE
-);
-
-INSERT INTO public.users_roles
-(
-	user_id,
-	role_id,
-	creation_date_time,
-	creation_user_id,
-	enabled
-)
-VALUES
-(
-	2,
 	2,
 	now()::TIMESTAMP,
 	2,
@@ -60,7 +43,7 @@ INSERT INTO public.users_roles
 )
 VALUES
 (
-	3,
+	2,
 	3,
 	now()::TIMESTAMP,
 	2,
@@ -77,8 +60,25 @@ INSERT INTO public.users_roles
 )
 VALUES
 (
+	3,
 	4,
+	now()::TIMESTAMP,
+	2,
+	TRUE
+);
+
+INSERT INTO public.users_roles
+(
+	user_id,
+	role_id,
+	creation_date_time,
+	creation_user_id,
+	enabled
+)
+VALUES
+(
 	4,
+	5,
 	now()::TIMESTAMP,
 	2,
 	TRUE
@@ -95,7 +95,7 @@ INSERT INTO public.users_roles
 VALUES
 (
 	5,
-	2,
+	3,
 	now()::TIMESTAMP,
 	2,
 	TRUE

@@ -17,15 +17,11 @@ import static java.util.stream.Collectors.toSet;
 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 
-@Mapper(componentModel = "spring", uses=Integer.class)
+@Mapper(componentModel = "spring",uses = UserRoleMapper.class)
 public abstract  class UserSaveMapper {
 
     @Autowired
-    private RoleCrudRepository roleCrudRepository;
-
-
-    @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToRole")
-    public abstract User create(CreateUserRequest request);
+    private UserRoleMapper userRoleMapper;
 
     @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
     @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToUserRole")
@@ -33,14 +29,13 @@ public abstract  class UserSaveMapper {
     @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
     public abstract void updateInfo(UpdateUserInfoRequest request, @MappingTarget User user);
 
+    @Mapping(source = "userId",target = "userId")
+    @Mapping(source = "authorities",target = "authorities", qualifiedByName = "stringToRole")
+    public abstract User create(CreateUserRequest request);
     @Named("stringToRole")
-    protected Set<UserRole> stringToUserRole(Set<String> authorities) {
+    protected Set<UserRole> stringToUserRole(Integer userId, Set<String> authorities) {
         if (authorities != null) {
-            return authorities.stream().map(auth->{
-                UserRole userRole=new UserRole();
-                userRole.setRole(roleCrudRepository.findByRolename(auth).orElse(new Role()));
-                return userRole;
-            }).collect(toSet());
+            return userRoleMapper.toUserRole(userId,authorities);
         }
         return new HashSet<>();
     }

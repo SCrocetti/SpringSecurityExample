@@ -22,6 +22,15 @@ INSERT INTO public.roles
 )
 VALUES
 (
+	'NONE'
+);
+
+INSERT INTO public.roles
+(
+	role_name
+)
+VALUES
+(
 	'SYSTEM_ADMIN'
 );
 INSERT INTO public.roles

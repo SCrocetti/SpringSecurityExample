@@ -8,6 +8,11 @@ public class UserRolePk implements Serializable {
     @Column(name="user_id")
     private Integer userId;
 
+    public UserRolePk(Integer roleId, Integer userId) {
+        this.roleId = roleId;
+        this.userId = userId;
+    }
+
     public Integer getRoleId() {
         return roleId;
     }

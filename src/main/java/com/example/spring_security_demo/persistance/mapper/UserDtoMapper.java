@@ -10,7 +10,7 @@ import java.util.List;
 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 
-@Mapper(componentModel = "spring", uses=Integer.class)
+@Mapper(componentModel = "spring")
 public abstract class UserDtoMapper {
     public abstract UserDto toUserDto(User user);
     public abstract List<UserDto> toUserDto(List<User> users);
