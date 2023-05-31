@@ -7,11 +7,12 @@ import com.example.spring_security_demo.persistance.entity.UserRole;
 import com.example.spring_security_demo.persistance.entity.UserRolePk;
 import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-
-@Mapper(componentModel = "spring",uses=RoleMapper.class)
+@Component
+@Mapper(componentModel = "spring",uses={RoleMapper.class})
 public class UserRoleMapper {
     @Autowired
     private RoleMapper roleMapper;

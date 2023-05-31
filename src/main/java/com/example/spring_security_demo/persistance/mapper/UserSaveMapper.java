@@ -9,6 +9,7 @@ import com.example.spring_security_demo.persistance.entity.User;
 import com.example.spring_security_demo.persistance.entity.UserRole;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -16,21 +17,70 @@ import java.util.Set;
 import static java.util.stream.Collectors.toSet;
 import static org.mapstruct.NullValueCheckStrategy.ALWAYS;
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
-
-@Mapper(componentModel = "spring",uses = UserRoleMapper.class)
+@Component
+@Mapper(componentModel = "spring",uses = {UserRoleMapper.class})
 public abstract  class UserSaveMapper {
 
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-    @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
-    @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToUserRole")
+    @Mappings({
+            @Mapping(source="userId",target = "userId" ),
+            @Mapping(source="username",target = "username" ),
+            @Mapping(source = "password", target = "password" ),
+            @Mapping(source="firstName", target = "firstName"),
+            @Mapping(source = "lastName", target = "lastName" ),
+            @Mapping(source = "email", target = "email"),
+            @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToUserRole"),
+            @Mapping(source = "creationDateTime", target = "creationDateTime" ),
+            @Mapping(source = "creationUserId", target = "creationUserId"),
+            @Mapping(source = "modificationDateTime", target = "modificationDateTime" ),
+            @Mapping(source = "modificationUserId", target = "modificationUserId" ),
+            @Mapping(source = "enabled", target = "enabled" ),
+            @Mapping(source = "creationUser", target = "creationUser"),
+            @Mapping(source = "createdUsers", target = "createdUsers" ),
+            @Mapping(source = "modificationUser", target = "modificationUser"),
+            @Mapping(source = "modifiedUsers", target = "modifiedUsers")
+    })
     public abstract void updateAuthorities(UpdateUserAuthoritiesRequest request, @MappingTarget User user);
-    @BeanMapping(nullValueCheckStrategy = ALWAYS, nullValuePropertyMappingStrategy = IGNORE)
+    @Mappings({
+            @Mapping(source="userId",target = "userId" ),
+            @Mapping(source="username",target = "username" ),
+            @Mapping(source = "password", target = "password" ),
+            @Mapping(source="firstName", target = "firstName"),
+            @Mapping(source = "lastName", target = "lastName" ),
+            @Mapping(source = "email", target = "email"),
+            @Mapping(source = "authorities", target = "authorities"),
+            @Mapping(source = "creationDateTime", target = "creationDateTime" ),
+            @Mapping(source = "creationUserId", target = "creationUserId"),
+            @Mapping(source = "modificationDateTime", target = "modificationDateTime" ),
+            @Mapping(source = "modificationUserId", target = "modificationUserId" ),
+            @Mapping(source = "enabled", target = "enabled" ),
+            @Mapping(source = "creationUser", target = "creationUser"),
+            @Mapping(source = "createdUsers", target = "createdUsers" ),
+            @Mapping(source = "modificationUser", target = "modificationUser"),
+            @Mapping(source = "modifiedUsers", target = "modifiedUsers")
+    })
     public abstract void updateInfo(UpdateUserInfoRequest request, @MappingTarget User user);
 
-    @Mapping(source = "userId",target = "userId")
-    @Mapping(source = "authorities",target = "authorities", qualifiedByName = "stringToRole")
+    @Mappings({
+            @Mapping(source="userId",target = "userId" ),
+            @Mapping(source="username",target = "username" ),
+            @Mapping(source = "password", target = "password" ),
+            @Mapping(source="firstName", target = "firstName"),
+            @Mapping(source = "lastName", target = "lastName" ),
+            @Mapping(source = "email", target = "email"),
+            @Mapping(source = "authorities", target = "authorities", qualifiedByName = "stringToUserRole"),
+            @Mapping(source = "creationDateTime", target = "creationDateTime" ),
+            @Mapping(source = "creationUserId", target = "creationUserId"),
+            @Mapping(source = "modificationDateTime", target = "modificationDateTime" ),
+            @Mapping(source = "modificationUserId", target = "modificationUserId" ),
+            @Mapping(source = "enabled", target = "enabled" ),
+            @Mapping(source = "creationUser", target = "creationUser"),
+            @Mapping(source = "createdUsers", target = "createdUsers" ),
+            @Mapping(source = "modificationUser", target = "modificationUser"),
+            @Mapping(source = "modifiedUsers", target = "modifiedUsers")
+    })
     public abstract User create(CreateUserRequest request);
     @Named("stringToRole")
     protected Set<UserRole> stringToUserRole(Integer userId, Set<String> authorities) {
